@@ -165,5 +165,10 @@ namespace stock_management_system
                 MessageBox.Show("Erro = " + ex);
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

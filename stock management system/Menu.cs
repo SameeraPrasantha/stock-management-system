@@ -45,5 +45,21 @@ namespace stock_management_system
             mn.Show();
             this.Hide();
         }
+
+        private void picBill_Click(object sender, EventArgs e)
+        {
+            Bill mn = new Bill();
+            mn.MdiParent = this.MdiParent;
+            mn.Show();
+            this.Hide();
+        }
+
+        private void lblMakeBill_Click(object sender, EventArgs e)
+        {
+            Bill mn = new Bill();
+            mn.MdiParent = this.MdiParent;
+            mn.Show();
+            this.Hide();
+        }
     }
 }

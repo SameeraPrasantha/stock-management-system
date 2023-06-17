@@ -32,7 +32,7 @@ namespace stock_management_system
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.lblGRN = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMakeBill = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.picReport = new System.Windows.Forms.PictureBox();
@@ -69,16 +69,17 @@ namespace stock_management_system
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // label2
+            // lblMakeBill
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(352, 212);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 25);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Make Bill";
+            this.lblMakeBill.AutoSize = true;
+            this.lblMakeBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMakeBill.ForeColor = System.Drawing.Color.White;
+            this.lblMakeBill.Location = new System.Drawing.Point(352, 212);
+            this.lblMakeBill.Name = "lblMakeBill";
+            this.lblMakeBill.Size = new System.Drawing.Size(109, 25);
+            this.lblMakeBill.TabIndex = 7;
+            this.lblMakeBill.Text = "Make Bill";
+            this.lblMakeBill.Click += new System.EventHandler(this.lblMakeBill_Click);
             // 
             // label3
             // 
@@ -131,6 +132,7 @@ namespace stock_management_system
             this.picBill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBill.TabIndex = 8;
             this.picBill.TabStop = false;
+            this.picBill.Click += new System.EventHandler(this.picBill_Click);
             // 
             // picGRN
             // 
@@ -155,7 +157,7 @@ namespace stock_management_system
             this.Controls.Add(this.picWarranty);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.picBill);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblMakeBill);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.picGRN);
             this.Controls.Add(this.lblGRN);
@@ -178,7 +180,7 @@ namespace stock_management_system
         private System.Windows.Forms.Label lblGRN;
         private System.Windows.Forms.PictureBox picGRN;
         private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMakeBill;
         private System.Windows.Forms.PictureBox picBill;
         private System.Windows.Forms.PictureBox picWarranty;
         private System.Windows.Forms.Label label3;
