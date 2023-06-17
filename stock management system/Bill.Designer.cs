@@ -35,29 +35,34 @@ namespace stock_management_system
             this.dtBill = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBillNo = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dataTable = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSum = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cmbCustomer = new System.Windows.Forms.ComboBox();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.lblItemNumber = new System.Windows.Forms.Label();
+            this.lblSN = new System.Windows.Forms.Label();
+            this.cmbSelectItem = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtQTY = new System.Windows.Forms.TextBox();
+            this.lblItemName = new System.Windows.Forms.Label();
+            this.txtWarranty = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Warranty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +83,7 @@ namespace stock_management_system
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(304, 31);
+            this.label1.Location = new System.Drawing.Point(344, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(183, 37);
             this.label1.TabIndex = 16;
@@ -121,22 +126,11 @@ namespace stock_management_system
             this.txtBillNo.TabIndex = 21;
             this.txtBillNo.Text = "1";
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(435, 93);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 25);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Select Item";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(348, 147);
+            this.label4.Location = new System.Drawing.Point(296, 146);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 23;
@@ -147,7 +141,7 @@ namespace stock_management_system
             this.dataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
-            this.ItemName,
+            this.ItemNames,
             this.BillNumber,
             this.SN,
             this.QTY,
@@ -157,6 +151,10 @@ namespace stock_management_system
             this.dataTable.Name = "dataTable";
             this.dataTable.Size = new System.Drawing.Size(714, 212);
             this.dataTable.TabIndex = 26;
+            this.dataTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTable_CellContentClick);
+            this.dataTable.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataTable_CellValidating);
+            this.dataTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTable_CellValueChanged);
+            this.dataTable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataTable_KeyDown);
             // 
             // button3
             // 
@@ -170,12 +168,13 @@ namespace stock_management_system
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox3
+            // txtSum
             // 
-            this.textBox3.Location = new System.Drawing.Point(687, 408);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(125, 20);
-            this.textBox3.TabIndex = 29;
+            this.txtSum.Location = new System.Drawing.Point(687, 408);
+            this.txtSum.Name = "txtSum";
+            this.txtSum.ReadOnly = true;
+            this.txtSum.Size = new System.Drawing.Size(125, 20);
+            this.txtSum.TabIndex = 29;
             // 
             // label5
             // 
@@ -209,32 +208,25 @@ namespace stock_management_system
             this.label6.TabIndex = 32;
             this.label6.Text = "Customer Name";
             // 
-            // comboBox1
+            // cmbCustomer
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(147, 143);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(176, 21);
-            this.comboBox1.TabIndex = 33;
+            this.cmbCustomer.FormattingEnabled = true;
+            this.cmbCustomer.Location = new System.Drawing.Point(147, 143);
+            this.cmbCustomer.Name = "cmbCustomer";
+            this.cmbCustomer.Size = new System.Drawing.Size(127, 21);
+            this.cmbCustomer.TabIndex = 33;
             // 
-            // textBox1
+            // btnSubmit
             // 
-            this.textBox1.Location = new System.Drawing.Point(526, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(202, 20);
-            this.textBox1.TabIndex = 34;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(801, 84);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 32);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
+            this.btnSubmit.ForeColor = System.Drawing.Color.White;
+            this.btnSubmit.Location = new System.Drawing.Point(801, 84);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(77, 32);
+            this.btnSubmit.TabIndex = 35;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.button2_Click);
             // 
             // button6
             // 
@@ -247,30 +239,122 @@ namespace stock_management_system
             this.button6.Text = "Clear";
             this.button6.UseVisualStyleBackColor = false;
             // 
-            // comboBox2
+            // txtPrice
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(397, 144);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(124, 21);
-            this.comboBox2.TabIndex = 37;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(575, 144);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(153, 20);
-            this.textBox2.TabIndex = 39;
+            this.txtPrice.Location = new System.Drawing.Point(636, 144);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(92, 20);
+            this.txtPrice.TabIndex = 39;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(538, 146);
+            this.label7.Location = new System.Drawing.Point(599, 147);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 38;
             this.label7.Text = "Price";
+            // 
+            // btnNew
+            // 
+            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
+            this.btnNew.ForeColor = System.Drawing.Color.White;
+            this.btnNew.Location = new System.Drawing.Point(265, 459);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(77, 32);
+            this.btnNew.TabIndex = 40;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = false;
+            this.btnNew.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // lblItemNumber
+            // 
+            this.lblItemNumber.AutoSize = true;
+            this.lblItemNumber.ForeColor = System.Drawing.Color.White;
+            this.lblItemNumber.Location = new System.Drawing.Point(633, 12);
+            this.lblItemNumber.Name = "lblItemNumber";
+            this.lblItemNumber.Size = new System.Drawing.Size(67, 13);
+            this.lblItemNumber.TabIndex = 42;
+            this.lblItemNumber.Text = "Item Number";
+            this.lblItemNumber.Visible = false;
+            this.lblItemNumber.TextChanged += new System.EventHandler(this.lblItemNumber_TextChanged);
+            // 
+            // lblSN
+            // 
+            this.lblSN.AutoSize = true;
+            this.lblSN.ForeColor = System.Drawing.Color.White;
+            this.lblSN.Location = new System.Drawing.Point(633, 38);
+            this.lblSN.Name = "lblSN";
+            this.lblSN.Size = new System.Drawing.Size(73, 13);
+            this.lblSN.TabIndex = 41;
+            this.lblSN.Text = "Serial Number";
+            this.lblSN.Visible = false;
+            // 
+            // cmbSelectItem
+            // 
+            this.cmbSelectItem.FormattingEnabled = true;
+            this.cmbSelectItem.Location = new System.Drawing.Point(486, 97);
+            this.cmbSelectItem.Name = "cmbSelectItem";
+            this.cmbSelectItem.Size = new System.Drawing.Size(242, 21);
+            this.cmbSelectItem.TabIndex = 44;
+            this.cmbSelectItem.SelectionChangeCommitted += new System.EventHandler(this.cmbSelectItem_SelectionChangeCommitted);
+            this.cmbSelectItem.SelectedValueChanged += new System.EventHandler(this.cmbSelectItem_SelectedValueChanged);
+            this.cmbSelectItem.TextChanged += new System.EventHandler(this.cmbSelectItem_TextChanged);
+            this.cmbSelectItem.Click += new System.EventHandler(this.cmbSelectItem_SelectedValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(420, 101);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 13);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Select Item";
+            // 
+            // txtQTY
+            // 
+            this.txtQTY.Location = new System.Drawing.Point(349, 143);
+            this.txtQTY.Name = "txtQTY";
+            this.txtQTY.ReadOnly = true;
+            this.txtQTY.Size = new System.Drawing.Size(27, 20);
+            this.txtQTY.TabIndex = 46;
+            // 
+            // lblItemName
+            // 
+            this.lblItemName.AutoSize = true;
+            this.lblItemName.ForeColor = System.Drawing.Color.White;
+            this.lblItemName.Location = new System.Drawing.Point(633, 65);
+            this.lblItemName.Name = "lblItemName";
+            this.lblItemName.Size = new System.Drawing.Size(58, 13);
+            this.lblItemName.TabIndex = 47;
+            this.lblItemName.Text = "Item Name";
+            this.lblItemName.Visible = false;
+            // 
+            // txtWarranty
+            // 
+            this.txtWarranty.FormattingEnabled = true;
+            this.txtWarranty.Items.AddRange(new object[] {
+            "1 - Month",
+            "3 - Month",
+            "6 - Month",
+            "1 - Year",
+            "2 - Year"});
+            this.txtWarranty.Location = new System.Drawing.Point(454, 143);
+            this.txtWarranty.Name = "txtWarranty";
+            this.txtWarranty.Size = new System.Drawing.Size(127, 21);
+            this.txtWarranty.TabIndex = 49;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(398, 147);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 48;
+            this.label9.Text = "Warranty";
             // 
             // No
             // 
@@ -280,12 +364,10 @@ namespace stock_management_system
             this.No.ReadOnly = true;
             this.No.Width = 46;
             // 
-            // ItemName
+            // ItemNames
             // 
-            this.ItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
+            this.ItemNames.HeaderText = "Item Name";
+            this.ItemNames.Name = "ItemNames";
             // 
             // BillNumber
             // 
@@ -297,7 +379,6 @@ namespace stock_management_system
             // 
             this.SN.HeaderText = "Serial Number";
             this.SN.Name = "SN";
-            this.SN.ReadOnly = true;
             // 
             // QTY
             // 
@@ -317,18 +398,6 @@ namespace stock_management_system
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             // 
-            // btnNew
-            // 
-            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.btnNew.ForeColor = System.Drawing.Color.White;
-            this.btnNew.Location = new System.Drawing.Point(265, 459);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(77, 32);
-            this.btnNew.TabIndex = 40;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = false;
-            this.btnNew.Click += new System.EventHandler(this.button7_Click);
-            // 
             // Bill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,22 +405,27 @@ namespace stock_management_system
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
             this.ClientSize = new System.Drawing.Size(909, 503);
             this.ControlBox = false;
+            this.Controls.Add(this.txtWarranty);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblItemName);
+            this.Controls.Add(this.txtQTY);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cmbSelectItem);
+            this.Controls.Add(this.lblItemNumber);
+            this.Controls.Add(this.lblSN);
             this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.cmbCustomer);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtSum);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dataTable);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtBillNo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtBill);
@@ -377,28 +451,33 @@ namespace stock_management_system
         private System.Windows.Forms.DateTimePicker dtBill;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtBillNo;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataTable;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSum;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox cmbCustomer;
+        private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnNew;
+        public System.Windows.Forms.Label lblItemNumber;
+        public System.Windows.Forms.Label lblSN;
+        private System.Windows.Forms.ComboBox cmbSelectItem;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtQTY;
+        public System.Windows.Forms.Label lblItemName;
+        private System.Windows.Forms.ComboBox txtWarranty;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemNames;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn SN;
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn Warranty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.Button btnNew;
     }
 }
