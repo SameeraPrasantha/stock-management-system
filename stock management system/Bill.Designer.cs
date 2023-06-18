@@ -37,14 +37,21 @@ namespace stock_management_system
             this.txtBillNo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataTable = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Warranty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtSum = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbCustomer = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
@@ -56,13 +63,6 @@ namespace stock_management_system
             this.lblItemName = new System.Windows.Forms.Label();
             this.txtWarranty = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Warranty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,7 +124,6 @@ namespace stock_management_system
             this.txtBillNo.Name = "txtBillNo";
             this.txtBillNo.Size = new System.Drawing.Size(125, 20);
             this.txtBillNo.TabIndex = 21;
-            this.txtBillNo.Text = "1";
             // 
             // label4
             // 
@@ -138,6 +137,7 @@ namespace stock_management_system
             // 
             // dataTable
             // 
+            this.dataTable.AllowUserToAddRows = false;
             this.dataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -156,17 +156,59 @@ namespace stock_management_system
             this.dataTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTable_CellValueChanged);
             this.dataTable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataTable_KeyDown);
             // 
-            // button3
+            // No
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(401, 459);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(77, 32);
-            this.button3.TabIndex = 27;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            this.No.Width = 46;
+            // 
+            // ItemNames
+            // 
+            this.ItemNames.HeaderText = "Item Name";
+            this.ItemNames.Name = "ItemNames";
+            // 
+            // BillNumber
+            // 
+            this.BillNumber.HeaderText = "Bill Number";
+            this.BillNumber.Name = "BillNumber";
+            this.BillNumber.ReadOnly = true;
+            // 
+            // SN
+            // 
+            this.SN.HeaderText = "Serial Number";
+            this.SN.Name = "SN";
+            // 
+            // QTY
+            // 
+            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.QTY.HeaderText = "QTY";
+            this.QTY.Name = "QTY";
+            this.QTY.Width = 54;
+            // 
+            // Warranty
+            // 
+            this.Warranty.HeaderText = "Warranty";
+            this.Warranty.Name = "Warranty";
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(401, 459);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(77, 32);
+            this.btnSave.TabIndex = 27;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtSum
             // 
@@ -186,17 +228,17 @@ namespace stock_management_system
             this.label5.TabIndex = 28;
             this.label5.Text = "Total";
             // 
-            // button4
+            // btnPrint
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(530, 459);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(77, 32);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Print";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(530, 459);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(77, 32);
+            this.btnPrint.TabIndex = 30;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.button4_Click);
             // 
             // label6
             // 
@@ -215,6 +257,7 @@ namespace stock_management_system
             this.cmbCustomer.Name = "cmbCustomer";
             this.cmbCustomer.Size = new System.Drawing.Size(127, 21);
             this.cmbCustomer.TabIndex = 33;
+            this.cmbCustomer.Click += new System.EventHandler(this.cmbCustomer_Click);
             // 
             // btnSubmit
             // 
@@ -228,16 +271,17 @@ namespace stock_management_system
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button6
+            // btnClear
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(801, 128);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(77, 32);
-            this.button6.TabIndex = 36;
-            this.button6.Text = "Clear";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
+            this.btnClear.ForeColor = System.Drawing.Color.White;
+            this.btnClear.Location = new System.Drawing.Point(801, 128);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(77, 32);
+            this.btnClear.TabIndex = 36;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.button6_Click);
             // 
             // txtPrice
             // 
@@ -356,48 +400,6 @@ namespace stock_management_system
             this.label9.TabIndex = 48;
             this.label9.Text = "Warranty";
             // 
-            // No
-            // 
-            this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.No.HeaderText = "No";
-            this.No.Name = "No";
-            this.No.ReadOnly = true;
-            this.No.Width = 46;
-            // 
-            // ItemNames
-            // 
-            this.ItemNames.HeaderText = "Item Name";
-            this.ItemNames.Name = "ItemNames";
-            // 
-            // BillNumber
-            // 
-            this.BillNumber.HeaderText = "Bill Number";
-            this.BillNumber.Name = "BillNumber";
-            this.BillNumber.ReadOnly = true;
-            // 
-            // SN
-            // 
-            this.SN.HeaderText = "Serial Number";
-            this.SN.Name = "SN";
-            // 
-            // QTY
-            // 
-            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.QTY.HeaderText = "QTY";
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 54;
-            // 
-            // Warranty
-            // 
-            this.Warranty.HeaderText = "Warranty";
-            this.Warranty.Name = "Warranty";
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            // 
             // Bill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,14 +418,14 @@ namespace stock_management_system
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cmbCustomer);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.txtSum);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataTable);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBillNo);
@@ -453,14 +455,14 @@ namespace stock_management_system
         private System.Windows.Forms.TextBox txtBillNo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataTable;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtSum;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbCustomer;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnNew;

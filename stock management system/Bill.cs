@@ -82,7 +82,6 @@ namespace stock_management_system
                     string num;
                     num = DR1.GetValue(0).ToString();
                     int getNumber = int.Parse(num);
-                    getNumber = int.Parse(txtBillNo.Text);
                     int cal = getNumber + 1;
                     txtBillNo.Text = cal.ToString();
                 }
@@ -95,7 +94,67 @@ namespace stock_management_system
             }
         }
 
-       
+        public void getCustomerName() {
+            try
+            {
+                cmd = new SqlCommand("select * from Bill; ", con);
+                con.Open();
+                SqlDataReader DR1 = cmd.ExecuteReader();
+                while (DR1.Read())
+                {
+                    string customerName = DR1.GetValue(3).ToString();
+                    if (!cmbCustomer.Items.Contains(customerName))
+                    {
+                        cmbCustomer.Items.Add(customerName);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex);
+            }
+        }
+
+        public void removeItem() {
+            try
+            {
+
+                string sqlQuery = "update [GRN] set [Quantity]=0 where [SerialNumber]=@ID;";
+
+               
+                foreach (DataGridViewRow row in dataTable.Rows)
+                {
+                    // Retrieve data from each cell
+                    string val1 = row.Cells[3].Value.ToString();
+                    
+                    // Execute SQL query for each row
+                    SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                    cmd.Parameters.AddWithValue("@ID", val1);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Update Erro = " + ex);
+                con.Close();
+            }
+        }
+
+        public void clear() {
+            cmbSelectItem.Text = "";
+            cmbCustomer.Text = "";
+            txtWarranty.Text = "";
+            txtWarranty.Text = "";
+            txtPrice.Text = "";
+            txtSum.Text = "";
+            dataTable.Rows.Clear();
+
+        }
        
         public Bill()
         {
@@ -115,6 +174,7 @@ namespace stock_management_system
         private void Bill_Load(object sender, EventArgs e)
         {
             dtBill.Value = DateTime.Today;
+            getBillNumber();
             getDataCombo();
 
         }
@@ -126,12 +186,56 @@ namespace stock_management_system
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            getBillNumber();
+            getDataCombo();
+            getCustomerName();
+            clear();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            try
+            {
+                
+                string sqlQuery = "insert into Bill ([Date],[BillNo],[ItemName],[CustomerName],[Quantity],[SerialNumber],[Warranty],[Price]) values (@Date,@BillNo,@ItemName,@CustomerName,@Quantity,@SerialNumber,@Warranty,@Price);";
+                
 
+                foreach (DataGridViewRow row in dataTable.Rows)
+                {
+                    // Retrieve data from each cell
+                    string val1 = row.Cells[1].Value.ToString();
+                    string val2 = row.Cells[2].Value.ToString();
+                    string val3 = row.Cells[3].Value.ToString();
+                    string val4 = row.Cells[4].Value.ToString();
+                    string val5 = row.Cells[5].Value.ToString();
+                    string val6 = row.Cells[6].Value.ToString();
+
+                    // Execute SQL query for each row
+                    cmd = new SqlCommand(sqlQuery, con);
+                    cmd.Parameters.AddWithValue("@Date", dtBill.Text);
+                    cmd.Parameters.AddWithValue("@CustomerName", cmbCustomer.Text);
+                    cmd.Parameters.AddWithValue("@ItemName", val1);
+                    cmd.Parameters.AddWithValue("@BillNo", val2);
+                    cmd.Parameters.AddWithValue("@SerialNumber", val3);
+                    cmd.Parameters.AddWithValue("@Quantity", val4);
+                    cmd.Parameters.AddWithValue("@Warranty", val5);
+                    cmd.Parameters.AddWithValue("@Price", val6);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    removeItem();
+                }
+                
+                getDataCombo();
+                con.Close();
+                MessageBox.Show("Record Save successfully");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Same Serial Number founded " + ex);
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -203,7 +307,14 @@ namespace stock_management_system
             }
             else
             {
-                lblItemNumber.Text = example.Substring(0, 3);
+                try
+                {
+                    lblItemNumber.Text = example.Substring(0, 3);
+                }
+                catch (Exception ex) { 
+                    
+                }
+                
             }
             
         }
@@ -283,6 +394,17 @@ namespace stock_management_system
                 }
 
             }
+        }
+
+        private void cmbCustomer_Click(object sender, EventArgs e)
+        {
+            getCustomerName();
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            clear();
         }
     }
 }
