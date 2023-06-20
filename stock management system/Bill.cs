@@ -244,72 +244,73 @@ namespace stock_management_system
 
             (printPreview as Form).WindowState = FormWindowState.Maximized;
             printDocument.DefaultPageSettings.PaperSize = new PaperSize("PaperA4", 1754, 1241);
-            int height = dataTable.Height;
-            dataTable.Height = dataTable.RowCount * dataTable.RowTemplate.Height * 2;
-            bmp = new Bitmap(dataTable.Width, dataTable.Height);
-            dataTable.DrawToBitmap(bmp, new Rectangle(0, 0, dataTable.Width, dataTable.Height));
-            dataTable.Height = height;
-            printPreview.ShowDialog();
 
-            //(printPreview as Form).WindowState = FormWindowState.Maximized;
-            //    printDocument.DefaultPageSettings.PaperSize = new PaperSize("PaperA4", 1754, 1241);
+            if (printPreview.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
 
-            //    if (printPreview.ShowDialog() == DialogResult.OK)
-            //    {
-            //        printDocument.Print();
+            }
 
-            //}
- 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (dtBill.Text == "" || txtBillNo.Text == "" || cmbSelectItem.Text == "" || cmbCustomer.Text == "" || txtQTY.Text == "" || txtPrice.Text == ""||txtWarranty.Text =="")
+            int rowCounts = dataTable.Rows.Count;
+
+            if (rowCounts == 5)
             {
-                MessageBox.Show("Please Fill the all ");
+                MessageBox.Show("Row limited in one page make another bill for more.!");
             }
             else
             {
-                try
+                if (dtBill.Text == "" || txtBillNo.Text == "" || cmbSelectItem.Text == "" || cmbCustomer.Text == "" || txtQTY.Text == "" || txtPrice.Text == "" || txtWarranty.Text == "")
                 {
-                    int rowCount = dataTable.RowCount;
-                  
-                    string itemName = lblItemName.Text;
-                    string billNumber = txtBillNo.Text;
-                    string serialNumber = lblSN.Text;
-                    string qty = txtQTY.Text;
-                    string warranty = txtWarranty.Text;
-                    string price = txtPrice.Text;
-
-                    // Add a new row to the DataGridView
-                    int rowIndex = dataTable.Rows.Add();
-
-                    // Set the value of the first column in the new row to the TextBox value
-                    dataTable.Rows[rowIndex].Cells[0].Value = rowCount.ToString();
-                    dataTable.Rows[rowIndex].Cells[1].Value = itemName;
-                    dataTable.Rows[rowIndex].Cells[2].Value = billNumber;
-                    dataTable.Rows[rowIndex].Cells[3].Value = serialNumber;
-                    dataTable.Rows[rowIndex].Cells[4].Value = qty;
-                    dataTable.Rows[rowIndex].Cells[5].Value = warranty;
-                    dataTable.Rows[rowIndex].Cells[6].Value = price;
-
-                    int sum = 0;
-                    foreach (DataGridViewRow row in dataTable.Rows)
+                    MessageBox.Show("Please Fill the all ");
+                }
+                else
+                {
+                    try
                     {
-                        if (row.Cells[6].Value != null)
-                        {
-                            sum += Convert.ToInt32(row.Cells[6].Value);
-                        }
-                      
-                        txtSum.Text = sum.ToString();
+                        int rowCount = dataTable.RowCount;
+                        rowCount += 1;
+                        string itemName = lblItemName.Text;
+                        string billNumber = txtBillNo.Text;
+                        string serialNumber = lblSN.Text;
+                        string qty = txtQTY.Text;
+                        string warranty = txtWarranty.Text;
+                        string price = txtPrice.Text;
 
+                        // Add a new row to the DataGridView
+                        int rowIndex = dataTable.Rows.Add();
+
+                        // Set the value of the first column in the new row to the TextBox value
+                        dataTable.Rows[rowIndex].Cells[0].Value = rowCount.ToString();
+                        dataTable.Rows[rowIndex].Cells[1].Value = itemName;
+                        dataTable.Rows[rowIndex].Cells[2].Value = billNumber;
+                        dataTable.Rows[rowIndex].Cells[3].Value = serialNumber;
+                        dataTable.Rows[rowIndex].Cells[4].Value = qty;
+                        dataTable.Rows[rowIndex].Cells[5].Value = warranty;
+                        dataTable.Rows[rowIndex].Cells[6].Value = price;
+
+                        int sum = 0;
+                        foreach (DataGridViewRow row in dataTable.Rows)
+                        {
+                            if (row.Cells[6].Value != null)
+                            {
+                                sum += Convert.ToInt32(row.Cells[6].Value);
+                            }
+
+                            txtSum.Text = sum.ToString();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error " + ex);
                     }
                 }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Error " + ex);
-                }
             }
+
         }
 
         private void btnSelectItem_Click(object sender, EventArgs e)
@@ -428,6 +429,8 @@ namespace stock_management_system
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
+            int rowCount = dataTable.Rows.Count;
+            int rowspace = 500;
             int width = logo.Width;
             int height = logo.Height;
             width = 260;
@@ -442,9 +445,35 @@ namespace stock_management_system
             e.Graphics.DrawString(dtBill.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(290, 372));
             e.Graphics.DrawString(lblCustomer.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(1220, 372));
             e.Graphics.DrawString(cmbCustomer.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(1400, 372));
-
-            e.Graphics.DrawImage(bmp, new Rectangle(65, 472, 1600, 480));
             
+            //datagrid header column
+            e.Graphics.DrawString("No", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(200, 450));
+            e.Graphics.DrawString("Item Name", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(250, 450));
+            e.Graphics.DrawString("Bill Number", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(450, 450));
+            e.Graphics.DrawString("Serial Number", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(650, 450));
+            e.Graphics.DrawString("QTY", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(850, 450));
+            e.Graphics.DrawString("Warranty", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(950, 450));
+            e.Graphics.DrawString("Price", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Point(1150, 450));
+
+            for(int i = 0; i < rowCount; i++)
+            {
+                
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[0].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(200, rowspace));
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[1].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(250, rowspace));
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[2].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(450, rowspace));
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[3].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(650, rowspace));
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[4].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(850, rowspace));
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[5].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(950, rowspace));
+                e.Graphics.DrawString(dataTable.Rows[i].Cells[6].Value.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(1150, rowspace));
+
+                rowspace += 100;
+            }
+                
+
+
+            e.Graphics.DrawString(lblTotal.Text, new Font("Time New Roman ", 18, FontStyle.Bold), Brushes.Black, new Point(1220, 1072));
+            e.Graphics.DrawString(txtSum.Text, new Font("Time New Roman ", 18, FontStyle.Bold), Brushes.Black, new Point(1400, 1072));
+
 
 
 

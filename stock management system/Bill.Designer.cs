@@ -47,7 +47,7 @@ namespace stock_management_system
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtSum = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.cmbCustomer = new System.Windows.Forms.ComboBox();
@@ -223,15 +223,15 @@ namespace stock_management_system
             this.txtSum.Size = new System.Drawing.Size(125, 20);
             this.txtSum.TabIndex = 29;
             // 
-            // label5
+            // lblTotal
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(650, 411);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Total";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.ForeColor = System.Drawing.Color.White;
+            this.lblTotal.Location = new System.Drawing.Point(650, 411);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(31, 13);
+            this.lblTotal.TabIndex = 28;
+            this.lblTotal.Text = "Total";
             // 
             // btnPrint
             // 
@@ -456,7 +456,7 @@ namespace stock_management_system
             this.Controls.Add(this.lblCustomer);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.txtSum);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataTable);
             this.Controls.Add(this.label4);
@@ -490,7 +490,7 @@ namespace stock_management_system
         private System.Windows.Forms.DataGridView dataTable;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtSum;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.ComboBox cmbCustomer;
