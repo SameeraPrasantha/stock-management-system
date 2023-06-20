@@ -33,14 +33,8 @@ namespace stock_management_system
             this.lblGRN = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblMakeBill = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.picReport = new System.Windows.Forms.PictureBox();
-            this.picWarranty = new System.Windows.Forms.PictureBox();
             this.picBill = new System.Windows.Forms.PictureBox();
             this.picGRN = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picReport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWarranty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGRN)).BeginInit();
             this.SuspendLayout();
@@ -81,48 +75,6 @@ namespace stock_management_system
             this.lblMakeBill.Text = "Make Bill";
             this.lblMakeBill.Click += new System.EventHandler(this.lblMakeBill_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(69, 428);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 25);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Warranty";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(366, 428);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 25);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Report";
-            // 
-            // picReport
-            // 
-            this.picReport.Image = global::stock_management_system.Properties.Resources.icons8_report_100;
-            this.picReport.Location = new System.Drawing.Point(343, 298);
-            this.picReport.Name = "picReport";
-            this.picReport.Size = new System.Drawing.Size(131, 127);
-            this.picReport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picReport.TabIndex = 12;
-            this.picReport.TabStop = false;
-            // 
-            // picWarranty
-            // 
-            this.picWarranty.Image = global::stock_management_system.Properties.Resources.icons8_warranty_period_100;
-            this.picWarranty.Location = new System.Drawing.Point(60, 298);
-            this.picWarranty.Name = "picWarranty";
-            this.picWarranty.Size = new System.Drawing.Size(131, 127);
-            this.picWarranty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picWarranty.TabIndex = 10;
-            this.picWarranty.TabStop = false;
-            // 
             // picBill
             // 
             this.picBill.Image = global::stock_management_system.Properties.Resources.icons8_bill_100;
@@ -150,12 +102,8 @@ namespace stock_management_system
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
-            this.ClientSize = new System.Drawing.Size(556, 477);
+            this.ClientSize = new System.Drawing.Size(556, 287);
             this.ControlBox = false;
-            this.Controls.Add(this.picReport);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.picWarranty);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.picBill);
             this.Controls.Add(this.lblMakeBill);
             this.Controls.Add(this.btnLogOut);
@@ -166,8 +114,6 @@ namespace stock_management_system
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Menu";
-            ((System.ComponentModel.ISupportInitialize)(this.picReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWarranty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGRN)).EndInit();
             this.ResumeLayout(false);
@@ -182,9 +128,5 @@ namespace stock_management_system
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Label lblMakeBill;
         private System.Windows.Forms.PictureBox picBill;
-        private System.Windows.Forms.PictureBox picWarranty;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox picReport;
-        private System.Windows.Forms.Label label4;
     }
 }

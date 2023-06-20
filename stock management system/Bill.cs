@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace stock_management_system
         SqlCommand cmd;
         SqlDataAdapter adapt;
         SqlDataReader Rdr;
-
+        Bitmap bmp;
 
         public string ItemName;
         public string SerialNumber;
@@ -241,6 +242,24 @@ namespace stock_management_system
         private void button4_Click(object sender, EventArgs e)
         {
 
+            (printPreview as Form).WindowState = FormWindowState.Maximized;
+            printDocument.DefaultPageSettings.PaperSize = new PaperSize("PaperA4", 1754, 1241);
+            int height = dataTable.Height;
+            dataTable.Height = dataTable.RowCount * dataTable.RowTemplate.Height * 2;
+            bmp = new Bitmap(dataTable.Width, dataTable.Height);
+            dataTable.DrawToBitmap(bmp, new Rectangle(0, 0, dataTable.Width, dataTable.Height));
+            dataTable.Height = height;
+            printPreview.ShowDialog();
+
+            //(printPreview as Form).WindowState = FormWindowState.Maximized;
+            //    printDocument.DefaultPageSettings.PaperSize = new PaperSize("PaperA4", 1754, 1241);
+
+            //    if (printPreview.ShowDialog() == DialogResult.OK)
+            //    {
+            //        printDocument.Print();
+
+            //}
+ 
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -405,6 +424,32 @@ namespace stock_management_system
         private void button6_Click(object sender, EventArgs e)
         {
             clear();
+        }
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            int width = logo.Width;
+            int height = logo.Height;
+            width = 260;
+            height = 332;
+
+            e.Graphics.DrawImage(logo.Image, new Rectangle(87, 31, width, height));
+            e.Graphics.DrawString("Stock Management", new Font("Time New Roman Bold", 45, FontStyle.Bold), Brushes.Black, new Point(296, 84));
+            e.Graphics.DrawString("System", new Font("Time New Roman Bold", 45, FontStyle.Bold), Brushes.Black, new Point(296, 134));
+            e.Graphics.DrawString(lblBillNumber.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(1220, 84));
+            e.Graphics.DrawString(txtBillNo.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(1400, 84));
+            e.Graphics.DrawString(lblDate.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(200, 372));
+            e.Graphics.DrawString(dtBill.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(290, 372));
+            e.Graphics.DrawString(lblCustomer.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(1220, 372));
+            e.Graphics.DrawString(cmbCustomer.Text, new Font("Time New Roman Bold", 16, FontStyle.Regular), Brushes.Black, new Point(1400, 372));
+
+            e.Graphics.DrawImage(bmp, new Rectangle(65, 472, 1600, 480));
+            
+
+
+
+
+
         }
     }
 }

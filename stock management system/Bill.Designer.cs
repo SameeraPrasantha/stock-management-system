@@ -29,11 +29,12 @@ namespace stock_management_system
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bill));
             this.btnMenu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.dtBill = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblBillNumber = new System.Windows.Forms.Label();
             this.txtBillNo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataTable = new System.Windows.Forms.DataGridView();
@@ -48,7 +49,7 @@ namespace stock_management_system
             this.txtSum = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblCustomer = new System.Windows.Forms.Label();
             this.cmbCustomer = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -63,7 +64,11 @@ namespace stock_management_system
             this.lblItemName = new System.Windows.Forms.Label();
             this.txtWarranty = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.printPreview = new System.Windows.Forms.PrintPreviewDialog();
+            this.logo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMenu
@@ -89,15 +94,15 @@ namespace stock_management_system
             this.label1.TabIndex = 16;
             this.label1.Text = "Make a Bill";
             // 
-            // label2
+            // lblDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(59, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Date";
+            this.lblDate.AutoSize = true;
+            this.lblDate.ForeColor = System.Drawing.Color.White;
+            this.lblDate.Location = new System.Drawing.Point(59, 101);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(30, 13);
+            this.lblDate.TabIndex = 18;
+            this.lblDate.Text = "Date";
             // 
             // dtBill
             // 
@@ -108,15 +113,15 @@ namespace stock_management_system
             this.dtBill.Size = new System.Drawing.Size(90, 20);
             this.dtBill.TabIndex = 19;
             // 
-            // label3
+            // lblBillNumber
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(214, 101);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Bill Number";
+            this.lblBillNumber.AutoSize = true;
+            this.lblBillNumber.ForeColor = System.Drawing.Color.White;
+            this.lblBillNumber.Location = new System.Drawing.Point(214, 101);
+            this.lblBillNumber.Name = "lblBillNumber";
+            this.lblBillNumber.Size = new System.Drawing.Size(60, 13);
+            this.lblBillNumber.TabIndex = 20;
+            this.lblBillNumber.Text = "Bill Number";
             // 
             // txtBillNo
             // 
@@ -240,15 +245,15 @@ namespace stock_management_system
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.button4_Click);
             // 
-            // label6
+            // lblCustomer
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(59, 147);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 13);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Customer Name";
+            this.lblCustomer.AutoSize = true;
+            this.lblCustomer.ForeColor = System.Drawing.Color.White;
+            this.lblCustomer.Location = new System.Drawing.Point(59, 147);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(82, 13);
+            this.lblCustomer.TabIndex = 32;
+            this.lblCustomer.Text = "Customer Name";
             // 
             // cmbCustomer
             // 
@@ -400,6 +405,32 @@ namespace stock_management_system
             this.label9.TabIndex = 48;
             this.label9.Text = "Warranty";
             // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
+            // printPreview
+            // 
+            this.printPreview.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreview.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreview.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreview.Document = this.printDocument;
+            this.printPreview.Enabled = true;
+            this.printPreview.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreview.Icon")));
+            this.printPreview.Name = "printPreview";
+            this.printPreview.Visible = false;
+            // 
+            // logo
+            // 
+            this.logo.Image = global::stock_management_system.Properties.Resources.stock_management_system;
+            this.logo.Location = new System.Drawing.Point(12, 391);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(101, 100);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 50;
+            this.logo.TabStop = false;
+            this.logo.Visible = false;
+            // 
             // Bill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,6 +438,7 @@ namespace stock_management_system
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(113)))), ((int)(((byte)(176)))));
             this.ClientSize = new System.Drawing.Size(909, 503);
             this.ControlBox = false;
+            this.Controls.Add(this.logo);
             this.Controls.Add(this.txtWarranty);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblItemName);
@@ -421,7 +453,7 @@ namespace stock_management_system
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cmbCustomer);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblCustomer);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.txtSum);
             this.Controls.Add(this.label5);
@@ -429,9 +461,9 @@ namespace stock_management_system
             this.Controls.Add(this.dataTable);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBillNo);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblBillNumber);
             this.Controls.Add(this.dtBill);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -440,6 +472,7 @@ namespace stock_management_system
             this.Text = "Bill";
             this.Load += new System.EventHandler(this.Bill_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,9 +482,9 @@ namespace stock_management_system
 
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.DateTimePicker dtBill;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblBillNumber;
         private System.Windows.Forms.TextBox txtBillNo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataTable;
@@ -459,7 +492,7 @@ namespace stock_management_system
         private System.Windows.Forms.TextBox txtSum;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.ComboBox cmbCustomer;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnClear;
@@ -481,5 +514,8 @@ namespace stock_management_system
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn Warranty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.PrintPreviewDialog printPreview;
+        private System.Windows.Forms.PictureBox logo;
     }
 }
